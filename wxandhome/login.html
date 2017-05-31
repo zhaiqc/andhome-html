@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html style="font-size: 100px;">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <title>和家用户登陆</title>
+    <meta name="description" content="login page">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="shortcut icon" href="images/andhome.png" type="images/x-icon">
+
+    <script type="text/javascript" src="style/jquery.min.js"></script>
+    <script type="text/javascript" src="style/jquery.cookie.js "></script>
+    <script type="text/javascript" src="style/login.js"></script>
+    
+</head>
+
+
+<body id="mtbody" onload="readUsername()">
+
+<header>
+    <a href="index.html" class="left"><img src="images/bt_pre1.png" alt=""></a>
+    <a href="#" class="right"><img src="images/logo.jpg" alt=""></a>
+</header>
+<div class="div-andhome">
+    <span class="span_andhome"><img class="img-andhome" src="images/andhome.png"></span>
+</div>
+<section class="form">
+    <form class="random-pass-login" style="" method="post" action="">
+        <div class="phone">
+            <input type="tel" name="username" id="username" placeholder="请输入账号" maxlength="11" autocomplete="off">
+        </div>
+        <div class="password">
+            <input type="password" name="password" id="password" placeholder="请输入密码" autocomplete="off">
+        </div>
+
+        <div class="center" id="youke">
+            <a onclick="youke_singin()">游客登陆</a>
+        </div>
+
+        <div class="tip" id="TipSMS"></div>
+        
+        <div class="remenber-phone">
+
+            <input type="checkbox" id="loginCheckBox2" class="select left chk_1" readonly onclick="checkedSelect()">
+            <label for="loginCheckBox2" class="left select-1">&nbsp;&nbsp;记住账号</label>
+
+            <a href="forget.html" class="right">忘记密码</a>
+            <!-- <a href="register.htm" class="right">免费注册</a> -->
+        </div>
+
+        <input type="button" id="smsSubmit" value="登录" onclick="singin()">
+        <!-- <input type="button" id="smsSubmit" value="游客登陆" onclick="singin()"> -->
+        
+        <div class="center">
+            <a href="register.html">免费注册</a>
+        </div>
+        
+    </form>
+</section>
+
+</body>
+
+</html>

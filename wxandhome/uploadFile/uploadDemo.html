@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html style="font-size: 100px;">
+<head>
+    <meta name="referrer" content="always"/>
+    <meta charset='utf-8'/>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <!--<meta http-equiv="x-dns-prefetch-control" content="on">-->
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="../style/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../style/jquery.cookie.js "></script>
+
+    <!--<script type="text/javascript" src="style/jquery.cookie.js "></script>-->
+    <!--<script src="style/imgUp.js"></script>-->
+    <!--<script src="style/ajaxupload.3.6.js"></script>-->
+    <title>uploadDemo</title>
+    <style type="text/css">
+        .pictures {
+            position: absolute;
+            width: 2rem;
+            height: 3rem;
+            opacity: 0;
+            background: red;
+        }
+
+        .preview img {
+            width: 2rem;
+            height: 3rem;
+            float: left;
+
+        }
+
+        .preview {
+            width: 2rem;
+            height: 3rem;
+            float: left;
+        }
+
+        .preview1 img {
+            width: 2rem;
+            height: 3rem;
+            float: left;
+        }
+
+        .preview1 {
+            width: 2rem;
+            height: 3rem;
+            float: left;
+        }
+
+        .preview2 img {
+            width: 2rem;
+            height: 3rem;
+            float: left;
+        }
+
+        .preview2 {
+            width: 2rem;
+            height: 3rem;
+            float: left;
+        }
+
+
+    </style>
+
+    <script type="text/javascript">
+        var postUrl = "http://118.190.71.51/property/index.php/PropertyRepair/post_repair";
+        function imgupload() {
+            var formData = new FormData(document.getElementById("uploadForm"));//表单id
+            var accessToken = $.cookie("hejia");
+            formData.append("accessToken", accessToken);
+//            formData.append("picture", document.getElementById("file").value);
+//            formData.append("accessToken", accessToken);
+//            var reader = new FileReader();
+//           var url1= reader.readAsDataURL(document.getElementById("file1").files[0]);
+            var url = document.getElementById("file").files[0];
+            var url1 = document.getElementById("file1").files[0];
+            var url2 = document.getElementById("file2").files[0];
+            formData.append("pictures",url);
+            formData.append("pictures1",url1);
+            formData.append("pictures2",url2);
+            $.ajax({
+                //提交数据的类型 POST GET
+                type: "POST",
+                //提交的网址
+                url: postUrl,
+                //提交的数
+                data: formData,
+                processData: false,
+                contentType: false,
+                //返回数据的格式
+                datatype: "json",//"xml", "html", "script", "json", "jsonp", "text".
+                success: function (data) {
+                    if (data.done == true) {
+                        alert(data.msg);
+                        window.history.go(-1);
+                    } else {
+                        var parsedJson = jQuery.parseJSON(data);
+                        alert(parsedJson.msg);
+                        window.history.go(-1);
+
+                    }
+                }
+            })
+        }
+
+
+    </script>
+
+</head>
+<body>
+<form id="uploadForm">
+
+    <label>
+        <span></span>
+        <input id="name" type="text" name="name" placeholder="请填写您的姓名"/>
+    </label>
+    <label>
+        <span></span>
+        <input id="title" type="title" name="title" placeholder="请填写报修标题"/>
+    </label>
+
+    <label>
+        <span></span>
+        <input id="tel" type="tel" name="tel" placeholder="请填写您的电话号码"/>
+    </label>
+    <label>
+        <span></span>
+        <textarea id="descrip" name="descrip" placeholder="请填写您的报修详细描述"></textarea>
+    </label>
+
+
+    <input type="file" id="file">
+    <input type="file" id="file1">
+    <input type="file" id="file2">
+
+</form>
+
+<input type="button" value="上传报修" id="noticeList " class="noticeList" onclick="imgupload()">
+
+</body>
+</html>

@@ -1,0 +1,485 @@
+@charset "utf-8";
+/*重置样式：*/
+body,h1,h2,h3,h4,p,dl,dd,ol,form,input,textarea,th,td,select,img{margin: 0;padding: 0;font-weight: normal;}
+em{font-style: normal;}
+/*li{list-style: none;}*/
+a{text-decoration: none;color:white;}
+img{border: none;vertical-align: middle;}
+table{border-collapse: collapse;}
+input,textarea{outline: none;}
+textarea{resize:none;overflow: auto;}
+*{-webkit-tap-highlight-color: rgba(0, 0, 0, 0);	/*消除蓝框*/font-family: "微软雅黑";}
+input[type="button"], input[type="submit"], input[type="reset"] {/* 去掉iphone，ipadinput 样式*/-webkit-appearance: none;}
+textarea {  -webkit-appearance: none;}  
+html{font-size:12px;}
+body{font-family: "微软雅黑";position: relative;min-width: 320px;}
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #999;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #999;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #999;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #999;
+}
+
+/*公共样式*/
+body{
+    background: #F1F0EE;
+}
+div{
+    font-family: "微软雅黑";
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+
+
+header{
+    background: #0F8ED3;
+    height: .76rem;
+    color: #fff;
+    overflow: hidden;
+}
+header a{
+    line-height: 0;
+}
+header .left img{
+	height: .24rem;
+    margin:.26rem 0 0 0.2rem;
+}
+header .right img{
+	height: .5rem;
+    margin:.13rem 0.2rem 0 0;
+}
+
+section{
+    padding:0 .6rem;
+    box-sizing: border-box;
+}
+section .title{
+    line-height: 1rem;
+    font-size: .28rem;
+    text-align: center;
+}
+section .login-select{
+    display: -moz-box; 
+    display: -webkit-box; 
+    display: box;
+    width: 100%;
+    line-height: .72rem;
+    font-size: .29rem;
+    color: #0c8ad1;
+    margin-bottom: .58rem;
+}
+section .login-select div{
+    cursor: pointer;
+    text-align: center;
+    -moz-box-flex: 1; 
+    -webkit-box-flex: 1; 
+    box-flex: 1;
+    border-bottom: 2px solid #1A86C4;
+}
+section .login-select .no-current{
+    color: #5C5C5A;
+    border-color: #CDD5D8;
+}
+section form{
+    font-size: .26rem;
+    line-height: .7rem;
+    margin-bottom: .3rem;
+}
+/*section form div{*/
+    /*height: .6rem;*/
+/*}*/
+
+.real_name{
+	width:100%;
+	border-bottom:1px solid #148ED3;
+}
+
+
+section form input{
+    /*width: 30%;*/
+    border: none;
+    /*border-bottom: 1px solid #148ED3;*/
+    /*display: block;*/
+    /*height: .6rem;*/
+    outline: none;
+    background: none;
+
+    /*text-indent: .5rem;*/
+}
+
+
+/*section form .sex input[type="radio"]{*/
+    /*width: 10%;*/
+    /*border: none;*/
+    /*display: block;*/
+    /*!*display: block;*!*/
+    /*!*height: .6rem;*!*/
+    /*outline: none;*/
+    /*background: none;*/
+    /*line-height: .7rem;*/
+    /*height: .4rem;*/
+    /*!*text-indent: .5rem;*!*/
+/*}*/
+section form .phone{
+    margin-bottom: .2rem;
+    /*background: url(../images/phone.png) 0.03rem center no-repeat;*/
+    -webkit-background-size: auto 56%;
+    background-size: auto 56%;
+}
+
+
+section form .password{
+    display: -moz-box; 
+    display: -webkit-box; 
+    display: box;
+}
+
+section form .password input{
+    -moz-box-flex: 1; 
+    -webkit-box-flex: 1; 
+    box-flex: 1;
+    /*background:  url(../images/pass.png) 0.03rem center no-repeat;*/
+    -webkit-background-size: auto 56%;
+    background-size: auto 56%;
+
+}
+section form .passpen input{
+    -moz-box-flex: 1; 
+    -webkit-box-flex: 1; 
+    box-flex: 1;
+    background:  url(../images/pass-pen.png) 0.03rem center no-repeat;
+    -webkit-background-size: auto 56%;
+    background-size: auto 56%;
+
+}
+input{
+    border-radius: 0;
+    font-size: .24rem;
+}
+.password div,
+.gain,
+input[type="button"]{
+    width: 100%;
+    text-indent: .5rem;
+    line-height: .6rem;
+    text-indent: 0;
+    text-align: center;
+    border: none;
+    outline: none;
+    height: .6rem;
+    background: #148ED3;
+    color: #fff;
+    font-size: 0.22rem;
+    border-radius: 6px;
+}
+.password .gain-father{
+    width: 2.1rem;
+    background: #148ED3;
+    margin-left: 1px;
+}
+section .reset .code div{
+    background: none;
+    margin-left: 0;
+}
+input[type="button"]{
+    font-size: .3rem;
+}
+
+.password .gain{
+    float: left;
+    margin-left: 0px;
+    width: 2rem;
+    
+}
+section form .tip{
+    color: #F06260;
+    line-height: 0.3rem;
+    height: .6rem;
+    margin-top:0.3rem;
+}
+section form .remenber-phone {
+    font-size: .22rem;
+    color: #7E7E7E;
+    line-height: .7rem;
+    height: .7rem;
+}
+section form a{
+    font-size: .22rem;
+    color: #7E7E7E;
+}
+section form .remenber-phone .left{
+    line-height: .7rem;
+    height: .7rem;
+}
+section form .remenber-phone .select{
+    border: none;
+    height: .5rem;
+    width: .5rem;
+    /*background:  url(../images/select.png) 0.03rem bottom no-repeat;*/
+    -webkit-background-size: auto 60%;
+    background-size: auto 60%;
+}
+section form .href a{
+    text-decoration: underline;
+}
+
+.web-pass-login{
+    display: none;
+}
+
+
+
+
+
+
+
+
+/*reset*/
+section .reset{
+    margin: .34rem 0;
+}
+section .reset .code img{
+    margin-left: 4px;
+    float: left;
+}
+section .reset .agree{
+    margin-top: .34rem;
+
+}
+section .reset .agree .blue{
+    color: #33B6DD;
+    text-decoration: underline;
+    margin-left: 4px;
+}
+section .reset-tip{
+    color: #555;
+    padding:0 16px 16px;
+    border: 1px solid #E4E4E4;
+    background: #fff;
+    line-height: .36rem;
+    font-size: .3rem;
+    border-radius: 4px;
+    margin-bottom: .34rem;
+} 
+section .reset-tip .blue{
+    color: #1FA5CD;
+    line-height: 0.76rem;
+    font-size: .26rem;
+}
+
+
+
+
+
+
+/*register*/
+.register {
+      margin: .34rem 0;
+}
+.register .code input{
+    /*background: url(../images/letter.png) 0 center no-repeat;*/
+    -webkit-background-size: auto 36%;
+    background-size: auto 36%;
+}
+.register #user-ID{
+    background:  url(../images/user.png) 0.05rem center no-repeat;
+    -webkit-background-size: auto 50%;
+    background-size: auto 50%;
+}
+.register .email input{
+    background:  url(../images/computer.png) 0 center no-repeat;
+    -webkit-background-size: auto 38%;
+    background-size: auto 38%;
+}
+
+.register .tip{
+    font-size: .2rem;
+    line-height: .3rem;
+    color: #7E7E7E;
+    margin:.3rem 0;
+    height: auto;
+}
+.register .password button{
+    width: 2rem;
+}
+.register .password-safe{
+    color: #7E7E7E;
+}
+.register .password-safe label{
+    margin-right: .1rem;
+}
+.register .password-safe .gray{
+    height: .14rem;
+    width: .6rem;
+    margin-right: .2rem;
+    background: #aaa;
+    margin-top: .32rem;
+}
+section .register .agree .special-bg{
+    /*background-position: 0 .07rem;*/
+    margin-top: -.14rem;
+}
+section .register .agree .flex-1{
+    margin-left: -.5rem;
+    padding-left: .5rem;
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    line-height: .4rem;
+}
+section .register .agree .blue {
+    color: #33B6DD;
+    text-decoration: underline;
+    margin-left: 4px;
+}
+
+section .register .tip-1{
+    margin:0.3rem 0 .6rem;
+}
+section .register .tip-2{
+    margin:0.1rem 0 ;
+}
+section .register .red{
+    color: #F06260;
+    margin:.16rem 0 .2rem;
+}
+section .register .password-safe .blue{
+    background: #148ED3;
+}
+section .register .email{
+    margin-top: .1rem;
+}
+section .register .user{
+    margin: .1rem 0;
+}
+section .register .password-safe{
+    margin-bottom: .1rem;
+    height: .7rem;
+}
+section .register .sex{
+    margin-bottom: .1rem;
+    height: .7rem;
+}
+
+/*tis.html*/
+section .tis-con{
+    background: #fff;
+    border:1px solid #e5e5e5;
+    -webkit-border-radius: .1rem;
+    -moz-border-radius: .1rem;
+    border-radius: .1rem;
+    margin: 1rem 0% .5rem;
+
+  -webkit-box-shadow:.01rem .02rem .09rem #DFDCDC; 
+  -moz-box-shadow:.01rem .02rem .09rem #DFDCDC; 
+  box-shadow:.01rem .02rem .09rem #DFDCDC; 
+}
+section .tis-form{
+    color: #5f5f5f;
+    font-size: .22rem;
+    margin: 0 3% .4rem 3%;
+}
+section .tis-form .title{
+    font-size: .3rem;
+    color: #0c8ad1;
+    text-align: left;
+    border-bottom: 1px solid #b8b8b8;
+}
+section .tis-form .txt{
+    line-height: .4rem;
+    margin: 3% 0;
+}
+section .tis-form .author{
+    text-align: right;
+    color: #999999;
+}
+section .btn-a{
+    display: block;
+    text-indent: 0;
+    text-align: center;
+    border: none;
+    outline: none;
+    height: .6rem;
+    line-height: .6rem;
+    background: #148ED3;
+    color: #fff;
+    font-size: 0.3rem;
+    border-radius: 6px;
+
+}
+
+.liveChoose select {
+    height:40px;-webkit-appearance:none;
+    
+    margin: 30px 0 30px 0;
+    appearance:none;
+    border:none;
+    font-size:15px;
+    padding:0px 10px;
+    display:block;
+    width:100%;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    background-color: #FFFFFF;
+    color:#333333;
+    border-radius:4px;
+}
+
+.liveChoose select option{
+   text-align: center;
+}
+
+#xieyi {
+    border: 1px solid #cacece;
+    border-radius: 5px;
+}
+
+.sex {
+    display: none;
+}
+
+.sex + label {
+    -webkit-appearance: none;
+    background-color: #fafafa;
+    border: 1px solid #cacece;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+    padding: 9px;
+    border-radius: 50px;
+    display: inline-block;
+    position: relative;
+}
+
+.sex:checked + label:after {
+    content: ' ';
+    width: 12px;
+    height: 12px;
+    border-radius: 50px;
+    position: absolute;
+    top: 3px;
+    background: #99a1a7;
+    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
+    text-shadow: 0px;
+    left: 3px;
+    font-size: 32px;
+}
+
+.sex:checked + label {
+    background-color: #e9ecee;
+    color: #99a1a7;
+    border: 1px solid #adb8c0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1), inset 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+.sex + label:active, .sex:checked + label:active {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}

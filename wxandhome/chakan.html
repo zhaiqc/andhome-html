@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>微信支付</title>
+    <script type="text/javascript" src="style/jquery.min.js"></script>
+    <script type="text/javascript" src="style/jquery.cookie.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+    <script type="text/javascript">
+        !function (a) {
+            function b() {
+                var b = g.getBoundingClientRect().width;
+                a.rem = (b / 6.4 > 100 ? 100 : (b / 6.4 < 50 ? 50 : b / 6.4)), g.style.fontSize = a.rem + "px"
+            }
+
+            var g = a.document.documentElement, e;
+            a.addEventListener("resize", function () {
+                clearTimeout(e), e = setTimeout(b, 300)
+            }, !1),
+                a.addEventListener("pageshow", function (a) {
+                    a.persisted && (clearTimeout(e), e = setTimeout(b, 300))
+                }, !1), b()
+        }(window);
+
+        function internet() {
+            var getUrl = "http://118.190.71.51/property/index.php/PropertyCheck/unPaidOrders";
+            var accessToken = $.cookie("hejia");
+            $.ajax({
+                //提交数据的类型 POST GET
+                type: "post",
+                //提交的网址
+                url: getUrl,
+
+                //提交的数据
+                data: {
+                    accessToken: accessToken
+
+                },
+                //返回数据的格式
+                datatype: "json",//"xml", "html", "script", "json", "jsonp", "text".
+                success: function (data) {
+                    if (data.done == false) {
+                        console.log(data);
+                        $.cookie("desc", data.plot_name + data.room_name);
+                        $.cookie("total_fee", data.amount);
+                        $.cookie("user_id", data.user_id);
+                        $.cookie("order_ids", data.ids);
+                    }
+                    else {
+//                        console.log(data)
+                    }
+
+
+                }
+            })
+        }
+        function pay() {
+            var postUrl = "http://118.190.71.51/property/index.php/PropertyWxpay/Wxpay";
+            var desc = $.cookie("desc");
+            var total_fee = $.cookie("total_fee");
+            var user_id = $.cookie("user_id");
+            var order_ids = $.cookie("order_ids");
+
+            console.log(desc);
+            console.log(total_fee);
+            console.log(user_id);
+            console.log(order_ids);
+            $.ajax({
+                //提交数据的类型 POST GET
+                type: "POST",
+                //提交的网址
+                url: postUrl,
+
+                //提交的数据
+                data: {
+                    desc: desc,
+                    total_fee: total_fee,
+                    user_id: user_id,
+                    order_ids: order_ids,
+                    from: "物业费"
+                },
+                //返回数据的格式
+                datatype: "json",//"xml", "html", "script", "json", "jsonp", "text".
+
+                success: function (data) {
+                    console.log(data);
+
+//                    var appid = data.x.appid;
+//                    var noncestr = data.x.noncestr;
+//                    var partnerid = data.x.partnerid;
+//                    var prepayid = data.x.prepayid;
+//                    var package = data.x.package;
+//                    var sign = data.x.sign;
+//                    var timestamp = data.x.timestamp;
+                    if (data.done == true) {
+
+                        wx.config({
+                            debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                            appId: appid, // 必填，公众号的唯一标识
+                            timestamp: timestamp, // 必填，生成签名的时间戳
+                            nonceStr: noncestr, // 必填，生成签名的随机串
+                            signature: sign,// 必填，签名，见附录1
+                            jsApiList: ['chooseWXPay'] // 必填，需要使用的JS接口列表，这里只写支付的
+                        });
+                        wx.ready(function () {
+                            wx.chooseWXPay({
+                                timestamp: timestamp,
+                                nonceStr: noncestr,
+                                package: "prepay_id=" + prepayid,
+                                signType: 'MD5',
+                                paySign: sign,
+                                success: function (res) {
+
+                                    alert("支付成功");
+                                }
+                            });
+                        });
+//alert("1")
+//
+//                        //调用微信JS api 支付
+//
+//                            alert("2")
+////                            alert(document.getElementById("jjj").value);
+//                            WeixinJSBridge.invoke(
+//                                'getBrandWCPayRequest', {
+//                                    "appId": appid,     //公众号名称，由商户传入
+//                                    "timeStamp": timestamp,         //时间戳，自1970年以来的秒数
+//                                    "nonceStr": noncestr, //随机串
+//                                    "package": package,
+//                                    "signType": "MD5",        //微信签名方式：
+//                                    "paySign": sign//微信签名
+//                                },
+//                                function (res) {
+//                                    WeixinJSBridge.log(res.err_msg);
+//                                    alert(res.err_code + res.err_desc + res.err_msg);
+//                                }
+//                            );
+//                            alert("fffffff");
+//
+//
+//                        function callpay() {
+//                            if (typeof WeixinJSBridge == "undefined") {
+//                                if (document.addEventListener) {
+//                                    document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+//                                }
+//                                else if (document.attachEvent) {
+//                                    document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+//                                    document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+//                                }
+//                            }
+//                            else {
+//                                jsApiCall();
+//                            }
+//                        }
+//
+
+                    }
+                    else {
+//                        var parsedJson = jQuery.parseJSON(data);
+//                        alert(parsedJson.msg);
+                    }
+
+
+                }
+            })
+
+        }
+
+
+    </script>
+</head>
+<body>
+<button onclick="internet()"> 查看账单</button>
+<button id="btnpay" class="btnpay" onclick="pay()">支付账单</button>
+
+
+</body>
+</html>

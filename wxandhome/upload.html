@@ -1,0 +1,318 @@
+<html style="font-size: 100px;">
+<head>
+    <meta name="referrer" content="always"/>
+    <meta charset='utf-8'/>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="style/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="style/jquery.cookie.js "></script>
+    <script src="style/imgUp.js"></script>
+    <script src="style/ajaxupload.3.6.js"></script>
+    <title>文件上传</title>
+    <link href="css/common.css" type="text/css" rel="stylesheet">
+    <!--<link href="css/upload.css" type="text/css" rel="stylesheet">-->
+    <link href="css/upload.css" type="text/css" rel="stylesheet">
+    <style type="text/css">
+
+        .button {
+            background: #0F8ED3;
+            width: 300px;
+            border: none;
+            padding: 10px 25px 10px 25px;
+            color: #FFF;
+            box-shadow: 1px 1px 5px #B6B6B6;
+            border-radius: 3px;
+            text-shadow: 1px 1px 1px #9E3F3F;
+            cursor: pointer;
+            margin-top: .25rem;
+            margin: 0 auto;
+            margin-bottom: .50rem;
+        }
+
+        header a {
+            line-height: 0;
+        }
+
+        header {
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            font-size: 18px;
+            color: #FFF;
+            text-align: center;
+            background-color: #00A3FF;
+            position: relative;
+            font-family: "微软雅黑";
+        }
+
+        header .left img {
+
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+
+        }
+
+        header .right img {
+            /*height: .5rem;*/
+            /*margin: .13rem 0.2rem 0 0；*/
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 0px;
+            right: 0px;
+
+        }
+
+        .left {
+            float: left;
+        }
+
+        .right {
+            float: right;
+        }
+
+        .img-box {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .img-section {
+            margin-top: .3rem;
+        }
+
+        .z_file f1 {
+            margin: 0 auto;
+        }
+
+        .basic-grey input {
+            width: 100%;
+            height: .7rem;
+            margin-top: .3rem;
+            outline: none;
+            line-height: .5rem;
+            text-indent: .4rem;
+            /*font-size: .1rem;*/
+            border-color: #0F8ED3;
+            /*border-style: solid;*/
+            border-top-width: 0rem;
+            border-right-width: 0rem;
+            border-bottom-width: .01rem;
+            border-left-width: 0rem;
+            display: block;
+            background: none;
+        }
+
+        .basic-grey {
+            padding: .5rem;
+        }
+
+        .basic-grey textarea {
+            width: 100%;
+            margin-top: .3rem;
+            height: 2rem;
+            background: none;
+            border-color: #0F8ED3;
+            -moz-border-radius: .5rem;
+            -webkit-border-radius: .5rem;
+            border-radius: .2rem;
+            padding: .5rem;
+        }
+
+        .noticeList {
+            width: 80%;
+            line-height: .6rem;
+            text-indent: 0;
+            text-align: center;
+            border: none;
+            outline: none;
+            height: .6rem;
+            background: #148ED3;
+            color: #fff;
+            font-size: 0.22rem;
+            border-radius: 6px;
+            display: block;
+            margin: 5px auto;
+            margin-bottom: .3rem;
+        }
+
+        .noticeList { /* 去掉iphone，ipadinput 样式*/
+            -webkit-appearance: none;
+        }
+
+
+    </style>
+    <script type="text/javascript">
+        //保证全屏
+        !function (a) {
+            function b() {
+                var b = g.getBoundingClientRect().width;
+                a.rem = (b / 6.4 > 100 ? 100 : (b / 6.4 < 50 ? 50 : b / 6.4)), g.style.fontSize = a.rem + "px"
+            }
+
+            var g = a.document.documentElement, e;
+            a.addEventListener("resize", function () {
+                clearTimeout(e), e = setTimeout(b, 300)
+            }, !1), a.addEventListener("pageshow", function (a) {
+                a.persisted && (clearTimeout(e), e = setTimeout(b, 300))
+            }, !1), b()
+        }(window);
+        window.addEventListener("load", function () {
+            setTimeout(function () {
+                window.scrollTo(0, 1);
+            }, 0);
+        });
+        var postUrl = "http://118.190.71.51/property/index.php/PropertyRepair/post_repair";
+        function imgupload() {
+            var formData = new FormData(document.getElementById("uploadForm"));//表单id
+            var accessToken = $.cookie("hejia");
+            formData.append("accessToken", accessToken);
+//            formData.append("picture", document.getElementById("file").value);
+            var name =document.getElementById("name").value;
+            var url = document.getElementById("file").files[0];
+            var url1 = document.getElementById("file1").files[0];
+            var url2 = document.getElementById("file2").files[0];
+            formData.append("name",name);
+            formData.append("pictures",url);
+            formData.append("pictures1",url1);
+            formData.append("pictures2",url2);
+            $.ajax({
+                //提交数据的类型 POST GET
+                type: "POST",
+                //提交的网址
+                url: postUrl,
+                //提交的数
+                data: formData,
+                processData: false,
+                contentType: false,
+                //返回数据的格式
+                datatype: "json",//"xml", "html", "script", "json", "jsonp", "text".
+                success: function (data) {
+                    if (data.done == true) {
+                        alert(data.msg);
+                        window.history.go(-1);
+                    } else {
+                        var parsedJson = jQuery.parseJSON(data);
+                        alert(parsedJson.msg);
+                        window.history.go(-1);
+
+                    }
+                }
+            })
+        }
+    </script>
+
+
+</head>
+
+<body style="text-align:center">
+<header class="header">
+    <div>
+        <a href="javascript:history.go(-1)" class="left"><img src="images/bt_pre.png" alt=""></a>上传报修
+        <a href="#" class="right"><img src="images/bt_home.png" alt=""></a>
+    </div>
+</header>
+
+<form action="" method="post" class="basic-grey" id="uploadForm" enctype="multipart/form-data">
+
+    <label>
+        <span></span>
+        <input id="name" type="text" name="name" placeholder="请填写您的姓名"/>
+    </label>
+    <label>
+        <span></span>
+        <input id="title" type="title" name="title" placeholder="请填写报修标题"/>
+    </label>
+
+    <label>
+        <span></span>
+        <input id="tel" type="tel" name="tel" placeholder="请填写您的电话号码"/>
+    </label>
+    <label>
+        <span></span>
+        <textarea id="descrip" name="descrip" placeholder="请填写您的报修详细描述"></textarea>
+    </label>
+
+    </div>
+
+    </label>
+    <div class="img-box1">
+        <section class=" img-section">
+            <div class="z_photo upimg-div clear" id="result" style="text-align: center">
+                <section class="z_file fl">
+                    <img src="images/input.png" class="add-img">
+                    <input type="file" name="file" id="file" class="file" value=""
+                           accept="image/jpg,image/jpeg,image/png,image/bmp" multiple/>
+                </section>
+            </div>
+        </section>
+    </div>
+
+
+
+
+    <div class="img-box1 ">
+        <section class=" img-section">
+            <div class="z_photo upimg-div clear" id="result1" style="text-align: center">
+                <section class="z_file fl">
+                    <img src="images/input.png" class="add-img">
+                    <input type="file" name="file" id="file1" class="file" value=""
+                           accept="image/jpg,image/jpeg,image/png,image/bmp" multiple/>
+
+                </section>
+            </div>
+        </section>
+
+
+    </div>
+
+
+
+    <div class="img-box2">
+        <section class=" img-section">
+            <div class="z_photo upimg-div clear" id="result2" style="text-align: center">
+                <section class="z_file fl">
+                    <img src="images/input.png" class="add-img">
+                    <input type="file" name="file" id="file2" class="file" value=""
+                           accept="image/jpg,image/jpeg,image/png,image/bmp" multiple/>
+
+                </section>
+            </div>
+        </section>
+
+
+    </div>
+
+
+
+
+    <div>
+
+
+    <!--<input type="file" class="file1" id="file1">-->
+    <!--<input type="file" class="file2" id="file2">-->
+    <!--<input type="file" class="file3" id="file3">-->
+</div>
+</form>
+<aside class="mask works-mask">&ndash;&gt;-->
+    <div class="mask-content">
+        <p class="del-p ">您确定要删除图片吗？</p>
+        <p class="check-p"><span class="del-com wsdel-ok">确定</span><span class="wsdel-no">取消</span></p>
+    </div>
+</aside>
+
+<label style="height:30px;">
+    <span>&nbsp;</span>
+    <!--<input type="button" class="button" value="发送" onclick="uplaodImg()"/>-->
+    <input type="button" value="上传报修" id="noticeList " class="noticeList" onclick="imgupload()">
+
+    <!--</label>
+    <!---->
+
+
+</label></body>
+
+</html>

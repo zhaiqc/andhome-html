@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html style="font-size: 100px;">
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <title>物业账单</title>
+        <meta name="format-detection" content="telephone=no, email=no">
+        <link rel="stylesheet" type="text/css" href="css/bill.css">
+        <link rel="shortcut icon" href="images/andhome.png" type="images/x-icon">
+        <script type="text/javascript" src="style/jquery.min.js"></script>
+        <script type="text/javascript" src="style/jquery.cookie.js "></script>
+        <script type="text/javascript" src="style/bill.js"></script>
+        
+
+    </head>
+
+  <body>
+     <div class="box_bt">
+        <a class="pre" href="#"><img src="images/bt_pre.png"></a>物业账单
+        <a id="homePage" class="home" href="index.html"><img src="images/bt_home.png"></a>
+    </div>
+
+    <div class="info">
+        <div class="clear real_name">
+            <div class="p-recharge-MB fl username"></div>
+            <!-- <div class="p-recharge-MB fl yezhu"></div> -->
+        </div>
+        <p class="live"></p>
+    </div>
+      
+			
+    <!--账单明细-->
+    <div class="content-block">
+        <div id="bill_main">
+            <ul class="bill_main">
+            <!-- <li>
+                <h4 onoff="false">
+                    <img src="images/bill_05.png" alt="">
+                        套餐及固定费
+                     <div class="fr">小计:358.00<span class="icon icon-up"></span></div>
+                </h4>  
+            </li>    -->                 
+            </ul>
+        
+            <dl class="total">
+                <dd>
+                    <p>应缴合计</p>
+                    <p class="sum"></p>
+                </dd>
+            </dl>
+
+            <input type="button" value="缴费记录" id="record_btn">
+        </div>
+        
+        <!-- 未支付账单详情 -->
+        <div id="bill_details" style="display: none;">
+           <ul class="bill_details">
+            <!-- <li>
+                <h4 onoff="false">
+                    <img src="images/bill_05.png" alt="">
+                        套餐及固定费
+                     <div class="fr">小计:358.00<span class="icon icon-up"></span></div>
+                </h4>  
+            </li>    -->                 
+            </ul>
+        
+            <dl class="total">
+                <dd>
+                    <p>应缴合计</p>
+                    <p class="sum"></p>
+                </dd>
+            </dl> 
+
+            <input type="button" value="返   回" id="mbill_btn">
+        </div>
+
+        <!-- 缴费记录 -->
+        <div id="bill_record" style="display: none;">
+           <ul class="bill_record">
+            <!-- <li>
+                <h4 onoff="false">
+                    <img src="images/bill_05.png" alt="">
+                        套餐及固定费
+                     <div class="fr">小计:358.00<span class="icon icon-up"></span></div>
+                </h4>  
+            </li>    -->                 
+            </ul>
+        
+            <dl class="total">
+                <dd>
+                    <p>已缴费合计</p>
+                    <p class="sum"></p>
+                </dd>
+            </dl> 
+
+            <input type="button" value="返   回" id="rbill_btn">
+        </div>
+
+        <!-- 已支付账单详情 -->
+        <div id="bill_record_details" style="display: none;">
+           <ul class="bill_record_details">
+            <!-- <li>
+                <h4 onoff="false">
+                    <img src="images/bill_05.png" alt="">
+                        套餐及固定费
+                     <div class="fr">小计:358.00<span class="icon icon-up"></span></div>
+                </h4>  
+            </li>    -->                 
+            </ul>
+        
+            <dl class="total">
+                <dd>
+                    <p>已缴费合计</p>
+                    <p class="sum"></p>
+                </dd>
+            </dl> 
+
+            <input type="button" value="返   回" id="rdbill_btn">
+        </div>
+    
+    </div>
+
+
+    <!-- 没有账单页面 -->
+    <section id="no_bill" style="padding-top:100px;display: none;" >
+        <div class="reset-tip">
+            <div class="blue">温馨提示：</div>
+            <div style="width:100%;text-align:center;height:100px;">
+                <h3>您的账单还没有生成，请耐心等待...</h3>
+            </div>
+            <input type="button" value="返   回" id="returnHome">
+            <input type="button" value="缴费记录" id="paid_record_btn">
+        </div>
+
+    </section>
+
+    <!-- 没有已支付账单页面 -->
+    <section id="no_paid" style="padding-top:100px;display: none;" >
+        <div class="reset-tip">
+            <div class="blue">温馨提示：</div>
+            <div style="width:100%;text-align:center;height:100px;">
+                <h3>您没有缴费账单记录！</h3>
+            </div>
+            <input type="button" value="返   回" id="returnBill">
+        </div>
+
+    </section>
+
+    <!-- 登陆状态失效弹出框 -->
+    <div class="pop">
+        <div class="popMain">
+            <!-- <div class="popTop"></div> -->
+            <div class="popMiddle">
+                <p>登陆状态失效,<br>是否重新登录？</p>
+            </div>
+            <div class="popBottom">
+                <span class="confirm">确认&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span class="cancel">&nbsp;&nbsp;取消</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 物业没有审核弹出框 -->
+    <div class="unin">
+        <div class="popMain">
+            <!-- <div class="popTop"></div> -->
+            <div class="popMiddle">
+                <p>您的小区入驻申请还没通过，<br>请联系物业人员进行审核！</p>
+            </div>
+            <div class="popBottom">
+                <span class="confirm">确认&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <!-- <span class="cancel">&nbsp;&nbsp;取消</span> -->
+            </div>
+        </div>
+    </div>
+
+    <!--通知列表--> 
+    <!-- <div class="p-recharge-li" style="background: #FFFFFF;">
+        <ul class="p-small-liuliang clear p-small-liuliang-LL2 pr"></ul>
+    </div> -->
+
+    </body>
+</html>
